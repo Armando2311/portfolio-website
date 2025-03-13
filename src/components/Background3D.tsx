@@ -111,7 +111,6 @@ function AnimatedCube() {
   }, []);
   
   // Update the cube on each frame
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useFrame((state, delta) => {
     if (!cubeRef.current || !cubeMaterialRef.current) return;
     
@@ -119,8 +118,6 @@ function AnimatedCube() {
     time.current += delta;
     
     // Get the current scroll progress
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const scrollY = scroll.scrollY.get();
     const scrollYProgress = scroll.scrollYProgress.get();
     
     if (initialAnimation) {
