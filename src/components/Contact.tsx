@@ -25,10 +25,20 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
     try {
-      // In a real application, you would send the form data to your backend or a form service
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Send the form data to our API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+      
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
     } catch (_error) {
