@@ -45,11 +45,11 @@ function Particles({ count = 2000 }: ParticlesProps) {
   }, [count]);
   
   // Update the particles on each frame
-  useFrame((state, delta) => {
+  useFrame((_state, _delta) => {
     if (!positions.current || !originalPositions.current || !points.current) return;
     
     // Get the current scroll progress
-    const scrollY = scroll.scrollY.get();
+    const _scrollY = scroll.scrollY.get();
     const scrollYProgress = scroll.scrollYProgress.get();
     
     // Rotate the points based on time and scroll
@@ -61,9 +61,9 @@ function Particles({ count = 2000 }: ParticlesProps) {
       const i3 = i * 3;
       
       // Apply some movement based on scroll
-      positions.current[i3] = originalPositions.current[i3] + Math.sin(scrollY * 0.001 + i * 0.01) * 0.5;
-      positions.current[i3 + 1] = originalPositions.current[i3 + 1] + Math.cos(scrollY * 0.001 + i * 0.01) * 0.5;
-      positions.current[i3 + 2] = originalPositions.current[i3 + 2] + Math.sin(scrollY * 0.001 + i * 0.02) * 0.5;
+      positions.current[i3] = originalPositions.current[i3] + Math.sin(scrollYProgress * 0.001 + i * 0.01) * 0.5;
+      positions.current[i3 + 1] = originalPositions.current[i3 + 1] + Math.cos(scrollYProgress * 0.001 + i * 0.01) * 0.5;
+      positions.current[i3 + 2] = originalPositions.current[i3 + 2] + Math.sin(scrollYProgress * 0.001 + i * 0.02) * 0.5;
     }
     
     // Update the geometry

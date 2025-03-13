@@ -11,7 +11,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
-        <span className="block">Hello, I'm</span>
+        <span className="block">Hello, I&apos;m</span>
         <span className="block mt-2">Armando R. Taveras</span>
       </motion.h1>
       

@@ -31,7 +31,7 @@ export default function Contact() {
       await new Promise(resolve => setTimeout(resolve, 1000));
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
-    } catch (error) {
+    } catch (_error) {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -59,7 +59,7 @@ export default function Contact() {
           >
             <h3 className="text-xl font-semibold mb-4">Get In Touch</h3>
             <p className="text-gray-300 mb-6">
-              I'm always open to discussing new opportunities, technical challenges, or collaborations in Linux system administration and server infrastructure. Feel free to reach out!
+              I&apos;m always open to discussing new opportunities, technical challenges, or collaborations in Linux system administration and server infrastructure. Feel free to reach out!
             </p>
             
             <div className="space-y-4">
