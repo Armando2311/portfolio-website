@@ -14,25 +14,25 @@ const projects = [
   },
   {
     id: 2,
-    title: 'Automated Server Deployment System',
-    description: 'Developed a system for automating the deployment and configuration of Linux servers, including OS installation, software configuration, and security hardening. Reduced deployment time by 70% and eliminated manual configuration errors.',
-    technologies: ['Bash Scripting', 'Python', 'PXE Boot', 'DHCP', 'Red Hat Linux'],
+    title: 'Bash Script Development',
+    description: 'Created and maintained critical bash scripts used in production environments, including scripts to detect NIC cards and verify PCI slot detection, and scripts to automate network configuration changes instead of manual BIOS updates, saving approximately 30 minutes of testing and configuration time per server.',
+    technologies: ['Bash Scripting', 'Linux', 'Networking', 'Hardware Detection', 'Process Automation'],
     image: '/placeholder.jpg',
     link: '#'
   },
   {
     id: 3,
-    title: 'RAID Configuration & Testing Framework',
-    description: 'Created a comprehensive framework for configuring and testing various RAID setups, ensuring data integrity and optimal performance. Includes automated stress testing and performance benchmarking.',
-    technologies: ['Hardware RAID', 'Software RAID', 'Bash', 'Performance Testing', 'Linux'],
+    title: 'Rack Expansion Project Lead',
+    description: 'Led a major infrastructure expansion project that increased testing capacity from 15 to 35 servers simultaneously. Managed hardware procurement, installation, configuration, and integration with existing systems to more than double testing throughput.',
+    technologies: ['Project Management', 'Hardware Installation', 'Server Configuration', 'Capacity Planning', 'Infrastructure Scaling'],
     image: '/placeholder.jpg',
     link: '#'
   },
   {
     id: 4,
-    title: 'System Monitoring Dashboard',
-    description: 'Implemented a centralized monitoring solution for tracking system performance, health, and security across multiple servers. Provides real-time alerts and historical data analysis.',
-    technologies: ['Grafana', 'Zabbix', 'Bash', 'Linux', 'Networking'],
+    title: 'Network Performance Optimization',
+    description: 'Implemented network performance optimizations across server infrastructure, resulting in improved data transfer rates and reduced latency. Conducted thorough testing and benchmarking to validate improvements and ensure system stability.',
+    technologies: ['Network Optimization', 'Performance Tuning', 'Benchmarking', 'Linux', 'TCP/IP'],
     image: '/placeholder.jpg',
     link: '#'
   }
