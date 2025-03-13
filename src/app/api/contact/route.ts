@@ -13,19 +13,21 @@ export async function POST(request: Request) {
       );
     }
     
-    // Configure email transporter
+    // Configure email transporter for Gmail with app password
     const transporter = nodemailer.createTransport({
-      service: 'gmail', // You can use other services like SendGrid, Mailgun, etc.
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true, // use SSL
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD, // Use app password if using Gmail
+        pass: process.env.EMAIL_PASSWORD, // App password
       },
     });
     
     // Email content
     const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.RECIPIENT_EMAIL, // Your email where you want to receive messages
+      from: `"Portfolio Contact Form" <${process.env.EMAIL_USER}>`,
+      to: process.env.RECIPIENT_EMAIL,
       subject: `New Contact Form Submission from ${name}`,
       text: `
         Name: ${name}
@@ -35,11 +37,16 @@ export async function POST(request: Request) {
         ${message}
       `,
       html: `
-        <h3>New Contact Form Submission</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 5px;">
+          <h2 style="color: #333; border-bottom: 1px solid #eee; padding-bottom: 10px;">New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+          <p><strong>Message:</strong></p>
+          <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin-top: 10px;">
+            ${message.replace(/\n/g, '<br>')}
+          </div>
+          <p style="color: #777; font-size: 12px; margin-top: 30px;">This email was sent from your portfolio website contact form.</p>
+        </div>
       `,
     };
     
