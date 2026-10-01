@@ -1,10 +1,16 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+const escapeHtml = (v: string) =>
+  v.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c] as string);
+
 export async function POST(request: Request) {
   try {
-    const { name, email, message } = await request.json();
-    
+    const body = await request.json();
+    const name = typeof body?.name === 'string' ? body.name.trim().slice(0, 200) : '';
+    const email = typeof body?.email === 'string' ? body.email.trim().slice(0, 200) : '';
+    const message = typeof body?.message === 'string' ? body.message.trim().slice(0, 5000) : '';
+
     // Validate the data
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -12,6 +18,12 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: 'Email address looks invalid' }, { status: 400 });
+    }
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeMessage = escapeHtml(message);
     
     // Configure email transporter for Gmail with app password
     const transporter = nodemailer.createTransport({
@@ -28,7 +40,8 @@ export async function POST(request: Request) {
     const mailOptions = {
       from: `"Portfolio Contact Form" <${process.env.EMAIL_USER}>`,
       to: process.env.RECIPIENT_EMAIL,
-      subject: `New Contact Form Submission from ${name}`,
+      subject: `New Contact Form Submission from ${name.replace(/[\r\n]+/g, ' ')}`,
+      replyTo: email,
       text: `
         Name: ${name}
         Email: ${email}
@@ -39,11 +52,11 @@ export async function POST(request: Request) {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 5px;">
           <h2 style="color: #333; border-bottom: 1px solid #eee; padding-bottom: 10px;">New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+          <p><strong>Name:</strong> ${safeName}</p>
+          <p><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></p>
           <p><strong>Message:</strong></p>
           <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin-top: 10px;">
-            ${message.replace(/\n/g, '<br>')}
+            ${safeMessage.replace(/\n/g, '<br>')}
           </div>
           <p style="color: #777; font-size: 12px; margin-top: 30px;">This email was sent from your portfolio website contact form.</p>
         </div>

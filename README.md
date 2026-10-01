@@ -1,94 +1,50 @@
-# Modern Portfolio Website
+# Armando R. Taveras — Portfolio
 
-A modern, minimal, black and white portfolio website built with Next.js, featuring 3D effects and smooth animations.
+Portfolio for Armando R. Taveras — Operations Specialist / production engineer in training: Linux infrastructure,
+server hardware, firmware, failure analysis and validation automation.
 
-## Features
+> **Public site.** Follow the confidentiality notes at the top of `src/lib/content.ts`: no customer names,
+> internal numbers, IPs, paths, coworker names or unapproved metrics.
 
-- Responsive design that works on all devices
-- Modern black and white aesthetic
-- Interactive 3D background with scroll effects
-- Smooth animations and transitions
-- Sections for About, Projects, Skills, and Contact
-- Contact form with validation
-- Optimized for performance
+The background is a procedurally generated, real-time 3D dual-socket server motherboard (React Three Fiber).
+Scrolling drives a camera along a path through the board — one shot per section — while signal pulses run
+along the copper traces and the POST-code display tracks the current section.
 
-## Technologies Used
+## Stack
 
-- **Next.js**: React framework for server-rendered applications
-- **TypeScript**: For type safety and better developer experience
-- **Tailwind CSS**: For styling and responsive design
-- **Three.js / React Three Fiber**: For 3D effects and animations
-- **Framer Motion**: For smooth animations and transitions
+- Next.js 15 (App Router) · TypeScript · Tailwind CSS v4
+- three.js · @react-three/fiber · @react-three/drei · @react-three/postprocessing (bloom, tone mapping)
+- Lenis (smooth scroll) · Framer Motion (UI motion)
+- Nodemailer contact endpoint (`/api/contact`)
 
-## Getting Started
+## Where things live
 
-### Prerequisites
+| Path | What |
+| --- | --- |
+| `src/lib/content.ts` | All site copy: profile, capabilities, method, case studies, field notes, toolchain, lab |
+| `public/resume.pdf` | Not present. Add a real PDF and set `PERSON.resume = '/resume.pdf'` to show résumé links |
+| `src/lib/boardLayout.ts` | Seeded board layout and 45° trace router — shared by texture and geometry |
+| `src/components/scene/` | Substrate texture, trace pulse shader, components, camera rig, post-processing |
+| `src/components/scene/CameraRig.tsx` | `SHOTS` — one camera position/target per section id |
+| `src/components/sections/` | Page sections |
 
-- Node.js 18.x or later
-- npm or yarn
+## Development
 
-### Installation
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build && npm start
+```
 
-1. Clone the repository or download the source code
+### Contact form environment variables
 
-2. Install dependencies:
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+```
+EMAIL_USER=<gmail address used to send>
+EMAIL_PASSWORD=<gmail app password>
+RECIPIENT_EMAIL=<where submissions go>
+```
 
-3. Run the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+## Accessibility & performance
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
-
-## Customization
-
-### Personal Information
-
-To customize the portfolio with your information:
-
-1. Update the personal details in each component:
-   - `src/components/Hero.tsx`: Your name and title
-   - `src/components/About.tsx`: Your bio, education, and experience
-   - `src/components/Projects.tsx`: Your projects
-   - `src/components/Skills.tsx`: Your skills
-   - `src/components/Contact.tsx`: Your contact information
-   - `src/components/Footer.tsx`: Your name and copyright
-
-2. Replace placeholder images with your own:
-   - Add your project images to the `public` directory
-   - Update image paths in the `Projects.tsx` component
-
-### Styling
-
-The website uses Tailwind CSS for styling. You can customize the look and feel by:
-
-1. Modifying the color scheme in `src/app/globals.css`
-2. Adjusting component styles in their respective files
-3. Customizing the 3D background in `src/components/Background3D.tsx`
-
-## Deployment
-
-This portfolio can be easily deployed to platforms like Vercel, Netlify, or GitHub Pages.
-
-For Vercel deployment (recommended for Next.js):
-
-1. Push your code to a GitHub repository
-2. Import the project in Vercel
-3. Follow the deployment steps
-
-## License
-
-This project is open source and available under the MIT License.
-
-## Acknowledgments
-
-- Next.js team for the amazing framework
-- Three.js and React Three Fiber for 3D capabilities
-- Framer Motion for animation utilities
+- `prefers-reduced-motion`: native scrolling, near-static camera, slowed pulses, no marquee.
+- Mobile / coarse pointer: lower DPR, 2K board texture, fewer passives, no shadows or MSAA.

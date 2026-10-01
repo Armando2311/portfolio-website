@@ -1,41 +1,33 @@
-import Header from '@/components/Header';
-import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Projects from '@/components/Projects';
-import Skills from '@/components/Skills';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
-import ScrollToTop from '@/components/ScrollToTop';
-import ThemeToggle from '@/components/ThemeToggle';
-import Preloader from '@/components/Preloader';
-import ClientCanvas from '@/components/ClientCanvas';
+import ClientScene from '@/components/ClientScene';
+import Boot from '@/components/Boot';
+import Hud from '@/components/Hud';
+import SmoothScroll from '@/components/SmoothScroll';
+import Hero from '@/components/sections/Hero';
+import { Capabilities, Profile } from '@/components/sections/Profile';
+import { Line, Work } from '@/components/sections/LineWork';
+import { Evidence, Toolchain } from '@/components/sections/EvidenceTools';
+import { Contact } from '@/components/sections/Contact';
+import { Lab } from '@/components/sections/Lab';
 
 export default function Home() {
   return (
-    <Preloader>
-      <main className="relative">
-        {/* 3D Background */}
-        <ClientCanvas />
-        
-        {/* Header */}
-        <Header />
-        
-        {/* Theme Toggle */}
-        <ThemeToggle />
-        
-        {/* Main Content */}
-        <div className="relative z-10">
-          <Hero />
-          <About />
-          <Projects />
-          <Skills />
-          <Contact />
-          <Footer />
-        </div>
-        
-        {/* Scroll to Top Button */}
-        <ScrollToTop />
+    <>
+      <Boot />
+      <SmoothScroll />
+      <ClientScene />
+      <div className="scene-shade pointer-events-none fixed inset-0 z-[1]" aria-hidden />
+      <Hud />
+      <main className="relative z-10">
+        <Hero />
+        <Profile />
+        <Capabilities />
+        <Line />
+        <Work />
+        <Evidence />
+        <Toolchain />
+        <Lab />
+        <Contact />
       </main>
-    </Preloader>
+    </>
   );
 }
