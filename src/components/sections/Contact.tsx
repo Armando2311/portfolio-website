@@ -64,16 +64,16 @@ export function Contact() {
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
         <div>
           <SectionHead
-            index="07"
+            index="08"
             label="Open a ticket"
             title={
               <>
-                Have a platform
+                Hardware that has to
                 <br />
-                <span className="text-[var(--cyan)]">that has to ship right?</span>
+                <span className="text-[var(--cyan)]">work every time?</span>
               </>
             }
-            sub="Validation methods, integration problems, a failure nobody has pinned down yet — send it over."
+            sub="Systems integration, infrastructure, test & automation, or technical operations roles — or a failure nobody has pinned down yet."
           />
           <Reveal delay={0.1}>
             <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 font-mono text-sm">
@@ -81,7 +81,7 @@ export function Contact() {
                 ['Email', PERSON.email, `mailto:${PERSON.email}`],
                 ['Phone', PERSON.phone, `tel:${PERSON.phone.replace(/[^\d+]/g, '')}`],
                 ['Location', PERSON.location, ''],
-                ['Résumé', 'Download PDF', PERSON.resume],
+                ...(PERSON.resume ? [['Résumé', 'Download PDF', PERSON.resume]] : []),
               ].map(([k, v, href]) => (
                 <div key={k} className="flex items-center justify-between gap-4 bg-black/70 px-5 py-4 backdrop-blur">
                   <span className="text-[10px] uppercase tracking-[0.25em] text-white/40">{k}</span>

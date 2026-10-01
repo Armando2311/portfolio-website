@@ -6,9 +6,9 @@ const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Armando R. Taveras — Validation & Integration',
+  title: 'Armando R. Taveras — Systems, Validation & Automation',
   description:
-    'Armando R. Taveras — Lead Technician in validation and integration of customer-specific server and industrial PC platforms: test method design, failure analysis, firmware and configuration control, and production automation.',
+    'Armando R. Taveras — Operations Specialist and production engineer in training. Linux infrastructure, server hardware, firmware, failure analysis and validation automation, from single systems to production-scale workflows.',
 };
 
 export const viewport: Viewport = {

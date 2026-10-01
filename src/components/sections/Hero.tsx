@@ -43,25 +43,33 @@ export default function Hero() {
       </h1>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-        <motion.p {...show(0.15)} className="max-w-2xl text-base leading-relaxed text-[var(--ink)]/80 sm:text-xl">
-          {HERO.lede}
-        </motion.p>
+        <motion.div {...show(0.15)} className="max-w-2xl">
+          <p className="text-xl font-semibold leading-snug tracking-tight text-[var(--ink)] sm:text-2xl">{HERO.headline}</p>
+          <p className="mt-3 text-base leading-relaxed text-[var(--ink)]/70 sm:text-lg">{HERO.lede}</p>
+        </motion.div>
         <motion.div {...show(0.3)} className="flex flex-wrap gap-3">
           <button className="btn btn-primary" onClick={() => scrollToId('work')}>
             See the work <span aria-hidden>↓</span>
           </button>
-          <a className="btn" href={PERSON.resume} download>
-            Résumé <span className="font-mono text-[10px] text-white/40">PDF</span>
-          </a>
+          {PERSON.resume && (
+            <a className="btn" href={PERSON.resume} download>
+              Résumé <span className="font-mono text-[10px] text-white/40">PDF</span>
+            </a>
+          )}
+          {!PERSON.resume && (
+            <button className="btn" onClick={() => scrollToId('contact')}>
+              Contact
+            </button>
+          )}
         </motion.div>
       </div>
 
       <motion.dl {...show(0.45)} className="mt-12 grid grid-cols-2 gap-px overflow-hidden border border-white/10 bg-white/10 font-mono text-[11px] uppercase tracking-[0.18em] sm:grid-cols-4">
         {[
           ['Role', PERSON.role],
-          ['Employer', PERSON.employer],
+          ['Track', PERSON.track],
+          ['Industry', PERSON.employerShort],
           ['Based', PERSON.location],
-          ['Track', 'RHCSA · in prep'],
         ].map(([k, v]) => (
           <div key={k} className="bg-black/70 px-4 py-3 backdrop-blur">
             <dt className="text-white/35">{k}</dt>

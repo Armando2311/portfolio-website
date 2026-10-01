@@ -11,7 +11,7 @@ export function Profile() {
         <div className="panel p-6 sm:p-10">
           <SectionHead
             index="01"
-            label="System profile"
+            label="Profile"
             title={
               <>
                 {PROFILE.title[0]}
@@ -27,6 +27,24 @@ export function Profile() {
               </Reveal>
             ))}
           </div>
+          <ol className="mt-10 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-4">
+            {PROFILE.path.map((s, i) => (
+              <motion.li
+                key={s.title}
+                className={`relative bg-black/70 p-4 ${i === 2 ? 'path-now' : ''}`}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 + i * 0.1, duration: 0.6, ease: EASE }}
+              >
+                <div className={`font-mono text-[10px] uppercase tracking-[0.25em] ${i === 2 ? 'text-[var(--cyan)]' : 'text-white/35'}`}>
+                  {String(i + 1).padStart(2, '0')} · {s.stage}
+                </div>
+                <div className="mt-2 text-[15px] font-semibold leading-tight">{s.title}</div>
+                <p className="mt-2 text-[13px] leading-relaxed text-[var(--mute)]">{s.body}</p>
+              </motion.li>
+            ))}
+          </ol>
         </div>
 
         <Reveal delay={0.2} className="self-end">
@@ -69,15 +87,15 @@ export function Capabilities() {
     <section id="capabilities" data-section="capabilities" className="section">
       <SectionHead
         index="02"
-        label="Capabilities"
+        label="What I do"
         title={
           <>
-            Six disciplines,
+            The last mile between
             <br />
-            one standard: <span className="text-[var(--amber)]">repeatable.</span>
+            engineering and <span className="text-[var(--amber)]">production.</span>
           </>
         }
-        sub="Different kinds of work on the same production line — each held to the same rule: two qualified people, following the same method, get the same result."
+        sub="Engineering decides what should change. I work out how production can execute it safely — and prove it, on dozens or hundreds of systems."
       />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" style={{ perspective: 1200 }}>
         {CAPABILITIES.map((c, i) => (

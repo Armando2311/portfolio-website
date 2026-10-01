@@ -59,7 +59,7 @@ function ScanLight() {
     const t = clock.elapsedTime * 0.5;
     l.position.set(look.x + Math.sin(t) * 7, 5, look.z + Math.cos(t) * 7);
   });
-  return <pointLight ref={ref} color="#36e6ff" intensity={60} distance={26} decay={2} />;
+  return <pointLight ref={ref} color="#36e6ff" intensity={110} distance={32} decay={2} />;
 }
 
 function World({ mobile }: { mobile: boolean }) {
@@ -67,11 +67,12 @@ function World({ mobile }: { mobile: boolean }) {
   return (
     <>
       <color attach="background" args={['#000000']} />
-      <fogExp2 attach="fog" args={['#000000', 0.017]} />
-      <ambientLight intensity={0.12} />
+      <fogExp2 attach="fog" args={['#000000', 0.0125]} />
+      <ambientLight intensity={0.32} />
+      <hemisphereLight args={['#bfe9ff', '#1a1208', 0.55]} />
       <directionalLight
         position={[-18, 30, 14]}
-        intensity={1.5}
+        intensity={2.3}
         color="#dfe8ff"
         castShadow={!mobile}
         shadow-mapSize={[2048, 2048]}
@@ -81,10 +82,10 @@ function World({ mobile }: { mobile: boolean }) {
         shadow-camera-bottom={-34}
         shadow-bias={-0.0004}
       />
-      <spotLight position={[24, 9, -40]} angle={0.5} penumbra={1} intensity={170} color="#ffb547" distance={70} />
-      <spotLight position={[-22, 10, 34]} angle={0.7} penumbra={1} intensity={300} color="#36e6ff" distance={70} />
+      <spotLight position={[24, 9, -40]} angle={0.5} penumbra={1} intensity={240} color="#ffb547" distance={70} />
+      <spotLight position={[-22, 10, 34]} angle={0.7} penumbra={1} intensity={420} color="#36e6ff" distance={70} />
       <ScanLight />
-      <Environment resolution={256} environmentIntensity={0.55}>
+      <Environment resolution={256} environmentIntensity={0.95}>
         <Lightformer intensity={2.2} position={[0, 10, 0]} rotation-x={Math.PI / 2} scale={[30, 3, 1]} />
         <Lightformer intensity={1.2} position={[-12, 6, 8]} rotation-y={Math.PI / 2} scale={[20, 2, 1]} color="#9fe9ff" />
         <Lightformer intensity={1.0} position={[12, 4, -10]} rotation-y={-Math.PI / 2} scale={[16, 2, 1]} color="#ffd29a" />
@@ -100,7 +101,7 @@ function World({ mobile }: { mobile: boolean }) {
         <Bloom mipmapBlur luminanceThreshold={1} luminanceSmoothing={0.2} intensity={1.15} radius={0.72} />
         <ChromaticAberration offset={new THREE.Vector2(0.0007, 0.0005)} radialModulation modulationOffset={0.35} />
         <Noise opacity={0.045} blendFunction={BlendFunction.OVERLAY} />
-        <Vignette darkness={0.78} offset={0.22} />
+        <Vignette darkness={0.6} offset={0.28} />
         <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
       </EffectComposer>
     </>

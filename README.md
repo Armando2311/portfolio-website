@@ -1,6 +1,10 @@
 # Armando R. Taveras — Portfolio
 
-Portfolio for validation & integration work on customer-specific server and industrial PC platforms.
+Portfolio for Armando R. Taveras — Operations Specialist / production engineer in training: Linux infrastructure,
+server hardware, firmware, failure analysis and validation automation.
+
+> **Public site.** Follow the confidentiality notes at the top of `src/lib/content.ts`: no customer names,
+> internal numbers, IPs, paths, coworker names or unapproved metrics.
 
 The background is a procedurally generated, real-time 3D dual-socket server motherboard (React Three Fiber).
 Scrolling drives a camera along a path through the board — one shot per section — while signal pulses run
@@ -17,7 +21,8 @@ along the copper traces and the POST-code display tracks the current section.
 
 | Path | What |
 | --- | --- |
-| `src/lib/content.ts` | All site copy (profile, capabilities, line stages, work, toolchain) |
+| `src/lib/content.ts` | All site copy: profile, capabilities, method, case studies, field notes, toolchain, lab |
+| `public/resume.pdf` | Not present. Add a real PDF and set `PERSON.resume = '/resume.pdf'` to show résumé links |
 | `src/lib/boardLayout.ts` | Seeded board layout and 45° trace router — shared by texture and geometry |
 | `src/components/scene/` | Substrate texture, trace pulse shader, components, camera rig, post-processing |
 | `src/components/scene/CameraRig.tsx` | `SHOTS` — one camera position/target per section id |

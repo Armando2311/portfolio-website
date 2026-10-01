@@ -75,7 +75,7 @@ export default function Hud() {
           <span className="hidden font-mono text-[11px] uppercase leading-4 tracking-[0.2em] text-[var(--mute)] sm:block">
             {PERSON.name}
             <br />
-            <span className="text-white/35">validation · integration</span>
+            <span className="text-white/35">systems · validation · automation</span>
           </span>
         </button>
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Sections">

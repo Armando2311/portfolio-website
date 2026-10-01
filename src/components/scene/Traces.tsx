@@ -106,7 +106,7 @@ const fragment = /* glsl */ `
 
     // Copper under green-black mask: dim, slightly lighter at the crown of the trace
     float crown = 1.0 - abs(vSide);
-    vec3 copper = vec3(0.42, 0.28, 0.12) * (0.16 + 0.1 * crown);
+    vec3 copper = vec3(0.42, 0.28, 0.12) * (0.26 + 0.14 * crown);
 
     // Comet pulses travelling along the arc length
     float period = 9.0 + vSeed * 14.0;
@@ -133,7 +133,7 @@ export default function Traces() {
       uTime: { value: 0 },
       uPower: { value: 0 },
       uBoost: { value: 0 },
-      uFog: { value: 0.017 },
+      uFog: { value: 0.0125 },
       uCyan: { value: new THREE.Color('#36e6ff') },
       uAmber: { value: new THREE.Color('#ffb547') },
       uFocus: { value: new THREE.Vector2(0, 0) },

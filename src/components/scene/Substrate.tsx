@@ -39,7 +39,7 @@ function makeBoardTexture(maxSize: number) {
   const rnd = mulberry32(9);
 
   // Solder mask: near-black with a faint blue-green cast and grain.
-  g.fillStyle = '#06080a';
+  g.fillStyle = '#0a0e11';
   g.fillRect(0, 0, cw, ch);
   const img = g.getImageData(0, 0, cw, ch);
   for (let i = 0; i < img.data.length; i += 4) {
@@ -92,7 +92,7 @@ function makeBoardTexture(maxSize: number) {
   }
 
   // Silkscreen
-  const silk = 'rgba(225, 230, 235, 0.62)';
+  const silk = 'rgba(225, 230, 235, 0.72)';
   g.strokeStyle = silk;
   g.fillStyle = silk;
   g.lineWidth = Math.max(1, S(0.05));

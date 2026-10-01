@@ -106,7 +106,7 @@ function Cpu({ x, z, label, mats }: { x: number; z: number; label: string; mats:
         { t: '& INTEGRATION', size: 34 },
         { t: '—', size: 24 },
         { t: `${label} · SR-26`, size: 26, weight: 500 },
-        { t: 'BATCH 20–100 · TRACEABLE', size: 22, weight: 500 },
+        { t: 'EVIDENCE FIRST · TRACEABLE', size: 22, weight: 500 },
       ]),
     [label],
   );

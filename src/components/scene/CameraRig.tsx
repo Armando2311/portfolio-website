@@ -17,6 +17,7 @@ export const SHOTS: Record<string, Shot> = {
   work: { pos: [7, 7.5, 31], look: [-6, 1, 14] },
   evidence: { pos: [0.01, 44, 7], look: [0, 0, 0.5] },
   toolchain: { pos: [-23, 5, 17], look: [-14, 0, 6] },
+  lab: { pos: [16, 4.5, 4], look: [11, 0.5, 11] },
   contact: { pos: [26, 30, 40], look: [0, -2, -3] },
 };
 

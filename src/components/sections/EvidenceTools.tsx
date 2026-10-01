@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { EVIDENCE, TOOLCHAIN } from '@/lib/content';
+import { EVIDENCE, FIELD_NOTES, TOOLCHAIN } from '@/lib/content';
 import { EASE, Reveal, SectionHead } from '../ui/primitives';
 
 const TONE: Record<string, string> = { ok: 'var(--ok)', warn: 'var(--amber)', info: 'var(--cyan)' };
@@ -90,6 +90,24 @@ export function Evidence() {
             <IsolationStack />
           </Reveal>
         </div>
+
+        <Reveal className="mt-20">
+          <div className="eyebrow mb-6">
+            <span className="text-[var(--amber)]">Field notes</span>
+            <span className="mx-3 inline-block h-px w-10 bg-white/25 align-middle" />
+            short findings from the bench
+          </div>
+        </Reveal>
+        <div className="grid gap-3 md:grid-cols-2">
+          {FIELD_NOTES.map((n, i) => (
+            <Reveal key={n.k} delay={(i % 2) * 0.08}>
+              <div className="panel grid h-full grid-cols-[3.5rem_1fr] gap-4 p-5">
+                <span className="font-mono text-[11px] tracking-[0.2em] text-[var(--cyan)]">{n.k}</span>
+                <p className="text-[15px] leading-relaxed text-[var(--ink)]/80">{n.t}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -108,7 +126,7 @@ export function Toolchain() {
               The bench, <span className="text-[var(--cyan)]">populated.</span>
             </>
           }
-          sub="What I reach for between a unit arriving on the bench and its record being closed."
+          sub="The tools matter less than combining them into a production-safe workflow with traceable evidence."
         />
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {TOOLCHAIN.map((g, gi) => (

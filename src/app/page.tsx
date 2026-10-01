@@ -7,6 +7,7 @@ import { Capabilities, Profile } from '@/components/sections/Profile';
 import { Line, Work } from '@/components/sections/LineWork';
 import { Evidence, Toolchain } from '@/components/sections/EvidenceTools';
 import { Contact } from '@/components/sections/Contact';
+import { Lab } from '@/components/sections/Lab';
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <Work />
         <Evidence />
         <Toolchain />
+        <Lab />
         <Contact />
       </main>
     </>
