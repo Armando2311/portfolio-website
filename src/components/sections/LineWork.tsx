@@ -99,29 +99,10 @@ function WorkCard({ w, i }: { w: (typeof WORK)[number]; i: number }) {
   );
 }
 
-export function Work() {
-  const outer = useRef<HTMLDivElement>(null);
-  const track = useRef<HTMLDivElement>(null);
-  const [dist, setDist] = useState(0);
-  const [wide, setWide] = useState(false);
-  const { scrollYProgress } = useScroll({ target: outer, offset: ['start start', 'end end'] });
-  const x = useTransform(scrollYProgress, [0.05, 0.95], [0, -dist]);
-  const bar = useTransform(scrollYProgress, [0.05, 0.95], [0, 1]);
-
-  useEffect(() => {
-    const measure = () => {
-      const isWide = window.innerWidth >= 1024;
-      setWide(isWide);
-      if (track.current) setDist(Math.max(0, track.current.scrollWidth - window.innerWidth + 64));
-    };
-    measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
-  }, []);
-
-  const head = (
+function WorkHead({ compact }: { compact: boolean }) {
+  return (
     <SectionHead
-      compact={wide}
+      compact={compact}
       index="04"
       label="Selected work"
       title={
@@ -133,26 +114,37 @@ export function Work() {
       }
     />
   );
+}
 
-  if (!wide) {
-    return (
-      <section id="work" data-section="work" className="section">
-        {head}
-        <div className="grid gap-4 sm:grid-cols-2" style={{ perspective: 1200 }}>
-          {WORK.map((w, i) => (
-            <Reveal key={w.id} delay={(i % 2) * 0.08}>
-              <WorkCard w={w} i={i} />
-            </Reveal>
-          ))}
-        </div>
-      </section>
-    );
-  }
+/** Desktop: sticky horizontal gallery. Mounted only once the layout is known, so its refs exist on first effect. */
+function WorkWide() {
+  const outer = useRef<HTMLElement>(null);
+  const track = useRef<HTMLDivElement>(null);
+  const [dist, setDist] = useState(0);
+  const { scrollYProgress } = useScroll({ target: outer, offset: ['start start', 'end end'] });
+  const x = useTransform(scrollYProgress, [0.05, 0.95], [0, -dist]);
+  const bar = useTransform(scrollYProgress, [0.05, 0.95], [0, 1]);
+
+  useEffect(() => {
+    const el = track.current;
+    if (!el) return;
+    const measure = () => setDist(Math.max(0, el.scrollWidth - window.innerWidth + 64));
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener('resize', measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, []);
 
   return (
     <section id="work" data-section="work" ref={outer} className="relative" style={{ height: `${100 + WORK.length * 55}vh` }}>
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden pt-16">
-        <div className="px-16">{head}</div>
+        <div className="px-16">
+          <WorkHead compact />
+        </div>
         <motion.div ref={track} className="flex gap-6 px-16" style={{ x, perspective: 1400 }}>
           {WORK.map((w, i) => (
             <div key={w.id} className="w-[30rem] shrink-0 xl:w-[34rem]">
@@ -163,6 +155,33 @@ export function Work() {
         <div className="mx-16 mt-10 h-px bg-white/10">
           <motion.div className="h-full origin-left bg-[var(--amber)] shadow-[0_0_10px_var(--amber)]" style={{ scaleX: bar }} />
         </div>
+      </div>
+    </section>
+  );
+}
+
+export function Work() {
+  // Horizontal scrub only on wide viewports without a reduced-motion preference.
+  const [wide, setWide] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px) and (prefers-reduced-motion: no-preference)');
+    const update = () => setWide(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  if (wide) return <WorkWide />;
+
+  return (
+    <section id="work" data-section="work" className="section">
+      <WorkHead compact={false} />
+      <div className="grid gap-4 sm:grid-cols-2" style={{ perspective: 1200 }}>
+        {WORK.map((w, i) => (
+          <Reveal key={w.id} delay={(i % 2) * 0.08}>
+            <WorkCard w={w} i={i} />
+          </Reveal>
+        ))}
       </div>
     </section>
   );
