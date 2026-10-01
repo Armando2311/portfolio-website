@@ -3,7 +3,7 @@
 // PUBLIC SITE — confidentiality rules:
 // no customer names (describe by industry), no part / serial / work-order / BOM / SOP / ECO /
 // deviation numbers, no IPs, paths, credentials, customer firmware versions, coworker names,
-// and no exact metrics unless approved for public disclosure.
+// and no exact metrics — keep them generic (approved: employer name only).
 
 export const SECTIONS = [
   { id: 'hero', label: 'Boot', code: 'A0' },
@@ -23,9 +23,8 @@ export const PERSON = {
   last: 'R. TAVERAS',
   role: 'Operations Specialist',
   track: 'Production Engineer · in training',
-  // Employer kept generic until approved for public use.
-  employer: 'U.S. industrial-computing & embedded-systems manufacturer',
-  employerShort: 'Industrial computing OEM',
+  employer: 'Axiomtek',
+  employerShort: 'Axiomtek',
   location: 'Methuen, MA',
   email: 'armandotaverash@gmail.com',
   phone: '(475) 455-1065',
@@ -43,13 +42,14 @@ export const PROFILE = {
   title: ['From the motherboard', 'upward.'],
   body: [
     'I started on the line as a production technician, building and testing Linux-based enterprise servers. The work kept moving upstream: troubleshooting the units that wouldn’t pass, then designing the validation, then automating it, then improving the systems around production itself.',
-    'Today I sit between production, engineering, quality and customers. I usually get involved when a system fails intermittently, drifts from its approved baseline, needs a production-safe workaround, or has to scale from one engineering sample to a full batch — and I turn engineering intent into something technicians can execute the same way every time.',
+    'At Axiomtek — industrial PCs, embedded and edge-AI systems, Linux servers and rack infrastructure — I sit between production, engineering, quality and customers. I usually get involved when a system fails intermittently, drifts from its approved baseline, needs a production-safe workaround, or has to scale from one engineering sample to a full batch — and I turn engineering intent into something technicians can execute the same way every time.',
     'Before technology I earned a graduate law degree with high distinction and practiced corporate, civil and real-estate law for about five years in the Dominican Republic. The habits carried over: evidence before conclusions, precise writing, and procedures that mean exactly one thing.',
   ],
   spec: [
     ['Name', 'Armando R. Taveras'],
     ['Role', 'Operations Specialist'],
     ['Track', 'Production Engineer (in training)'],
+    ['Employer', 'Axiomtek'],
     ['Industry', 'Industrial computing · embedded · edge AI'],
     ['Platforms', 'Servers · IPCs · Edge-AI · GPU · racks'],
     ['Stack', 'Hardware → firmware → Linux → network'],
@@ -239,12 +239,12 @@ export const WORK: CaseStudy[] = [
     kicker: 'Infrastructure · Rack integration',
     title: 'Rack-level integration & test capacity',
     theme: 'Treat the production test environment itself as infrastructure',
-    stat: { from: '', to: '~35', unit: 'systems under test at once' },
+    stat: { from: '', to: 'Rack', unit: 'test environment as infrastructure' },
     summary: 'Integrated racks of servers, GPU nodes, switches, firewalls, managed PDUs and UPSs — and redesigned the test environment when test capacity, not assembly, became the bottleneck.',
     problem: 'Long-duration validation — burn-in, multi-hour reboot loops, network and USB tests — was the critical path, and racks shipped as complete systems.',
     constraints: ['Power · network · PXE concurrency', 'Long tests', 'Mechanical & shipping'],
     did: [
-      'Helped expand the test environment to roughly 35 concurrent systems: rack capacity, network, power, PXE and image concurrency, staging and failure isolation.',
+      'Helped expand the test environment to dozens of concurrent systems: rack capacity, network, power, PXE and image concurrency, staging and failure isolation.',
       'Ran parallel test strategies so different rack sections run different workloads instead of waiting on one long test.',
       'On one rack, traced a misbehaving GPU system to configuration and power-delivery constraints rather than a bad GPU, and documented it for engineering.',
       'Requalified test stations after a facility move; supported a shipping corrective action on rail support and foam packaging.',

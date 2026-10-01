@@ -68,7 +68,7 @@ export default function Hero() {
         {[
           ['Role', PERSON.role],
           ['Track', PERSON.track],
-          ['Industry', PERSON.employerShort],
+          ['Employer', PERSON.employer],
           ['Based', PERSON.location],
         ].map(([k, v]) => (
           <div key={k} className="bg-black/70 px-4 py-3 backdrop-blur">
