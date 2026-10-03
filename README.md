@@ -1,6 +1,6 @@
 # Armando R. Taveras — Portfolio
 
-Portfolio for Armando R. Taveras — Operations Specialist / production engineer in training: Linux infrastructure,
+Portfolio for Armando R. Taveras — Operations Specialist / production engineering: Linux infrastructure,
 server hardware, firmware, failure analysis and validation automation.
 
 > **Public site.** Follow the confidentiality notes at the top of `src/lib/content.ts`: no customer names,

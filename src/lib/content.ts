@@ -22,7 +22,7 @@ export const PERSON = {
   first: 'ARMANDO',
   last: 'R. TAVERAS',
   role: 'Operations Specialist',
-  track: 'Production Engineer · in training',
+  track: 'Production Engineering',
   employer: 'Axiomtek',
   employerShort: 'Axiomtek',
   location: 'Methuen, MA',
@@ -33,7 +33,7 @@ export const PERSON = {
 };
 
 export const HERO = {
-  eyebrow: 'Operations Specialist · Production Engineer in training',
+  eyebrow: 'Operations Specialist · Production Engineering',
   headline: 'I build, troubleshoot, and automate the systems behind production hardware.',
   lede: 'Linux infrastructure, server hardware, firmware, validation automation and failure analysis — from a single engineering sample to production-scale batches.',
 };
@@ -48,7 +48,7 @@ export const PROFILE = {
   spec: [
     ['Name', 'Armando R. Taveras'],
     ['Role', 'Operations Specialist'],
-    ['Track', 'Production Engineer (in training)'],
+    ['Focus', 'Production Engineering'],
     ['Employer', 'Axiomtek'],
     ['Industry', 'Industrial computing · embedded · edge AI'],
     ['Platforms', 'Servers · IPCs · Edge-AI · GPU · racks'],

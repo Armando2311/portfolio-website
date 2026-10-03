@@ -8,7 +8,7 @@ const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin']
 export const metadata: Metadata = {
   title: 'Armando R. Taveras — Systems, Validation & Automation',
   description:
-    'Armando R. Taveras — Operations Specialist and production engineer in training. Linux infrastructure, server hardware, firmware, failure analysis and validation automation, from single systems to production-scale workflows.',
+    'Armando R. Taveras — Operations Specialist — production engineering. Linux infrastructure, server hardware, firmware, failure analysis and validation automation, from single systems to production-scale workflows.',
 };
 
 export const viewport: Viewport = {
