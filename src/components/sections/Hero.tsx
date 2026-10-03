@@ -67,7 +67,7 @@ export default function Hero() {
       <motion.dl {...show(0.45)} className="mt-12 grid grid-cols-2 gap-px overflow-hidden border border-white/10 bg-white/10 font-mono text-[11px] uppercase tracking-[0.18em] sm:grid-cols-4">
         {[
           ['Role', PERSON.role],
-          ['Track', PERSON.track],
+          ['Focus', PERSON.track],
           ['Employer', PERSON.employer],
           ['Based', PERSON.location],
         ].map(([k, v]) => (
